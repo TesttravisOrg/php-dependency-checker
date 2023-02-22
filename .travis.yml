@@ -19,12 +19,3 @@ script:
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
 
-# deploy:
-#   provider: releases
-#   api_key:
-#     secure: "U1otb30NrT3f38Gbkf531VU/8KhdbI94tnwSy70AeNXdtRYUZqDZwEzzXAQHV5TfZpzM2YeUcGypMELMRyX3PAjlA8aFDSNGQV400JmABSgYm16uWY4u9DK3pZzl41cVvd1PxCJVh50Pslveh07J8Jkf4rtwHn93w5LmOT46nJ4vqp2DXhfB5cPE5I4GLXEI9pODYTJrJsXRvVKuSQ5oJKJBwGRmo5uwRJjH3xxIsoyqcB1m3nGt+yYXkEUKR7QGYwn2IghwMxSwqiSGHn7xJI1b8yU5vmIwQyzR9uE2TmPxjPbvjVYu+u2VIdGrHH1WrMtj9ugkL39tcqAEPu631ucatQ+nNDnK+Z4WYHIxFf5d9uGaPsXQ53M9Vnd+vkJBvuBTd2r0UsVZDr7SWt8aG6brzS7aQd8ha33j+b4qahGfv1txOKXBrOhUdnxXNDB1KG6bRcQQSnGw9dDwpSqby694pNYohtV7AAuju4tE58LuoWn7lfBi0tSZmYMYizB9zRSDClbTbc0jqlt0o8WIUMV5jQZurxDYhM5zbxSP3d9WAw6xKSyxB4cE5Xf3JnOQxhz+Pbmbgbo27pZBoHjwdlJQfJ4spNB2EILgP6yX+LniNpT9KC6tYKrKGglttKsfYG00LJPVLYpLg687fNkXcpi1bIXsyOLqxSLgPRmjt6M="
-#   file: "release/php-dependency-checker.phar"
-#   skip_cleanup: true
-#   on:
-#     tags: true
-#     php: 7.2
