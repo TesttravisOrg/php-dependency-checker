@@ -1,23 +1,20 @@
-jobs:
-  include:
-    -   os: linux
-        dist: focal
-        language: php
-        php:
-#           - "7.1.18"
-          - "7.2"
-#           - "5.6.37"
-        addons:
-          sbom:
-            on:
-              branch: master
-            run_phase: before_script
+sudo: false
+language: php
 
-        before_script:
-        - composer install
+php:
+- "7.1.18"
+- "7.2"
+- "5.6.37"
+addons:
+  sbom:
+    on:
+      branch: master
+    run_phase: after_failure
 
-        script:
-        # - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then composer coveralls; else composer test; fi
-        - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
-        - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
+before_script:
+- composer install
 
+script:
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then composer coveralls; else composer test; fi
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
