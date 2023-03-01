@@ -18,3 +18,4 @@ script:
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then composer coveralls; else composer test; fi
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
+#commenting
